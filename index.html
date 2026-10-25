@@ -58,10 +58,10 @@ button,input{font:inherit}button{cursor:pointer;border:0;border-radius:14px;padd
   </div>
   <div class="answer-area">
    <label for="answer">Jawapan kamu</label>
-   <div class="answer-row"><input id="answer" inputmode="decimal" autocomplete="off" placeholder="Contoh: 3.7 atau 3,70" aria-describedby="feedback"><button id="checkBtn" class="primary">Semak ✓</button></div>
+   <div class="answer-row"><input id="answer" inputmode="decimal" autocomplete="off" placeholder="Contoh: 3.7" aria-describedby="feedback"><button id="checkBtn" class="primary">Semak ✓</button></div>
    <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
    <div class="next-row"><button id="hintBtn" class="secondary">💡 Beri petunjuk</button><button id="nextBtn" class="primary">Soalan seterusnya →</button></div>
-   <p class="mini-note">Tip: Kamu boleh gunakan titik (3.75) atau koma (3,75) untuk perpuluhan.</p>
+   <p class="mini-note">Tip: Kamu perlu gunakan titik (3.75) untuk perpuluhan.</p>
   </div>
  </main>
  <aside class="right-stack">
@@ -136,9 +136,9 @@ button,input{font:inherit}button{cursor:pointer;border:0;border-radius:14px;padd
  function check(){
   if(state.locked)return;
   const raw=$("answer").value;
-  if(!raw.trim()){feedback("Masukkan jawapan dahulu. Kamu boleh gunakan titik atau koma perpuluhan.","neutral");$("answer").focus();return;}
+  if(!raw.trim()){feedback("Masukkan jawapan dahulu. Kamu perlu gunakan titik.","neutral");$("answer").focus();return;}
   const val=parse(raw);
-  if(!Number.isFinite(val)){feedback("Nombor itu belum dapat dibaca. Cuba taip contohnya 3,75.","try");return;}
+  if(!Number.isFinite(val)){feedback("Nombor itu belum dapat dibaca. Cuba taip contohnya 3.75.","try");return;}
   state.attempts++;
   if(Math.abs(val-state.answer)<0.0001){
    state.locked=true;state.correct++;state.solved++;state.streak++;
@@ -162,7 +162,7 @@ button,input{font:inherit}button{cursor:pointer;border:0;border-radius:14px;padd
   state.hints++;
   const a=Math.round(state.a*100),b=Math.round(state.b*100),sum=a+b;
   const carries=(Math.floor((Math.round((state.a%1)*100)+Math.round((state.b%1)*100))/100));
-  feedback(`Petunjuk: susun ${fmt(state.a)} dan ${fmt(state.b)} supaya koma perpuluhan sebaris. Mula dengan digit paling kanan: ${Math.round((state.a%1)*100)%10} + ${Math.round((state.b%1)*100)%10}. ${carries?"Jika jumlah perseratus mencapai 10 atau lebih, kumpulkan semula ke lajur persepuluh.":"Selepas perseratus, tambah digit persepuluh dan kemudian sa."} Cuba kira semula sebelum menyemak.`,"neutral");
+  feedback(`Petunjuk: susun ${fmt(state.a)} dan ${fmt(state.b)} supaya titik perpuluhan sebaris. Mula dengan digit paling kanan: ${Math.round((state.a%1)*100)%10} + ${Math.round((state.b%1)*100)%10}. ${carries?"Jika jumlah perseratus mencapai 10 atau lebih, kumpulkan semula ke lajur persepuluh.":"Selepas perseratus, tambah digit persepuluh dan kemudian sa."} Cuba kira semula sebelum menyemak.`,"neutral");
  }
  document.querySelectorAll(".mode").forEach(btn=>btn.addEventListener("click",()=>{
   document.querySelectorAll(".mode").forEach(x=>x.classList.remove("active"));btn.classList.add("active");state.level=Number(btn.dataset.level);state.solved=0;state.hints=0;randomQuestion();
