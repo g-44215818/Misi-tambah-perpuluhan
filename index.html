@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#176b63">
+<title>Misi Tambah Perpuluhan</title>
+<style>
+:root{--ink:#173b3a;--muted:#617775;--teal:#176b63;--teal2:#dff4ef;--blue:#dfeeff;--gold:#fff0c2;--pink:#ffe4e7;--paper:#f5faf8;--line:#d8e7e2;--white:#fff;--shadow:0 12px 30px #164b4210}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(145deg,#eef8f4,#f8fbff 60%,#fff9e9);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);line-height:1.5}
+button,input{font:inherit}button{cursor:pointer;border:0;border-radius:14px;padding:12px 16px;font-weight:750;transition:transform .12s,filter .12s}button:active{transform:scale(.98)}button:focus-visible,input:focus-visible{outline:3px solid #e5a62a;outline-offset:3px}
+.wrap{max-width:1080px;margin:auto;padding:22px 16px 48px}.hero{background:linear-gradient(120deg,#155e58,#248a7d);color:white;border-radius:26px;padding:25px 25px 22px;box-shadow:var(--shadow);position:relative;overflow:hidden}.hero:after{content:"＋";position:absolute;right:20px;top:-45px;font-size:190px;opacity:.09;font-weight:900}.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:.75rem;font-weight:800;opacity:.85}.hero h1{font-size:clamp(1.8rem,5vw,3rem);line-height:1.08;margin:8px 0}.hero p{max-width:660px;margin:0;opacity:.94}.hero-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:17px}.tag{background:#ffffff24;border:1px solid #ffffff40;padding:6px 10px;border-radius:99px;font-size:.82rem;font-weight:700}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}.stat,.panel{background:#ffffffd9;border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow)}.stat{padding:13px 16px}.stat small{color:var(--muted);font-weight:700}.stat strong{display:block;font-size:1.55rem;line-height:1.3}.layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);gap:16px;align-items:start}.panel{padding:20px}.panel h2{font-size:1.15rem;margin:0 0 5px}.sub{color:var(--muted);font-size:.92rem;margin:0 0 15px}.mode-row{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.mode{background:#edf4f2;color:var(--ink);border:1px solid var(--line);padding:9px 12px}.mode.active{background:var(--teal);color:white;border-color:var(--teal)}.question-box{background:#f0f8f5;border:1px solid #d3eae2;border-radius:18px;padding:20px;text-align:center}.mission{font-size:.76rem;font-weight:850;letter-spacing:.1em;color:var(--teal);text-transform:uppercase}.equation{font-size:clamp(2rem,7vw,3.2rem);font-weight:850;letter-spacing:.015em;margin:7px 0;color:#163e3a}.equation .dot{color:#e29b20}.question-hint{color:var(--muted);font-size:.92rem}.place-table{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:16px auto 4px;max-width:390px}.place-head{font-size:.78rem;font-weight:800;color:var(--muted);text-align:center;padding:6px 2px}.digit{border-radius:12px;padding:10px 2px;text-align:center;font-size:1.5rem;font-weight:850;border:1px solid transparent}.ones{background:#e0f4ec;border-color:#b8e4d3}.tenths{background:#e3efff;border-color:#c6ddff}.hundredths{background:#fff0c8;border-color:#f5df9b}.place-label{font-size:.75rem;text-align:center;color:var(--muted);margin-top:5px}.steps{display:grid;gap:9px;margin-top:16px}.step{display:flex;gap:11px;align-items:flex-start;background:white;border:1px solid var(--line);padding:11px;border-radius:14px}.step-num{width:28px;height:28px;flex:0 0 28px;border-radius:50%;display:grid;place-items:center;background:var(--teal2);color:var(--teal);font-weight:850}.step p{margin:0;font-size:.92rem}.step b{display:block;margin-bottom:2px}.answer-area{margin-top:16px}.answer-area label{font-weight:800;display:block;margin-bottom:7px}.answer-row{display:flex;gap:9px}.answer-row input{min-width:0;flex:1;border:1.5px solid #c9ddd7;border-radius:14px;padding:12px 14px;background:white;font-size:1.15rem;font-weight:750;color:var(--ink)}.primary{background:var(--teal);color:white}.secondary{background:#e5f3ef;color:var(--teal)}.answer-row button{white-space:nowrap}.feedback{margin-top:12px;border-radius:14px;padding:12px 14px;font-weight:650;display:none}.feedback.show{display:block}.feedback.good{background:#e0f6e8;color:#145c35;border:1px solid #bce7cb}.feedback.try{background:#fff3d8;color:#7a4d00;border:1px solid #f0d797}.feedback.neutral{background:#e8f1ff;color:#234f83;border:1px solid #ccddfa}.next-row{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}.next-row button{flex:1}.mini-note{font-size:.82rem;color:var(--muted);margin:10px 0 0}.right-stack{display:grid;gap:16px}.tip{background:#fff8e4;border:1px solid #f0dfaa;border-radius:16px;padding:13px 14px;font-size:.92rem}.tip strong{display:block;margin-bottom:4px}.progress-track{height:9px;border-radius:99px;background:#e7efec;overflow:hidden;margin:9px 0 5px}.progress-fill{height:100%;width:0;background:linear-gradient(90deg,#1d8779,#81c9a7);border-radius:99px;transition:width .25s}.checklist{padding:0;margin:12px 0 0;list-style:none;display:grid;gap:10px}.checklist li{display:flex;gap:9px;align-items:flex-start;font-size:.91rem}.check{background:#e0f4ec;color:#176b63;border-radius:8px;min-width:24px;height:24px;display:grid;place-items:center;font-weight:900}.footer{text-align:center;color:var(--muted);font-size:.82rem;margin-top:18px}.hidden{display:none!important}
+@media(max-width:780px){.layout{grid-template-columns:1fr}.right-stack{grid-template-columns:1fr 1fr}.hero{padding:22px 19px}.stats{gap:8px}.stat{padding:11px}.stat strong{font-size:1.3rem}}
+@media(max-width:520px){.wrap{padding:12px 10px 30px}.right-stack{grid-template-columns:1fr}.panel{padding:15px}.answer-row{flex-wrap:wrap}.answer-row input{flex-basis:100%}.answer-row button{flex:1}.stats{grid-template-columns:repeat(3,minmax(0,1fr))}.stat small{font-size:.75rem}.stat strong{font-size:1.18rem}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+ <div class="eyebrow">Matematik sekolah rendah · Tahun 4–6</div>
+ <h1>🌟 Misi Tambah Perpuluhan</h1>
+ <p>Belajar menambah nombor perpuluhan sedikit demi sedikit. Susun titik, lihat nilai tempat dan cuba lagi tanpa takut melakukan kesilapan.</p>
+ <div class="hero-tags"><span class="tag">📍 Titik perpuluhan sebaris</span><span class="tag">🧩 Langkah demi langkah</span><span class="tag">⭐ Latihan ikut kemajuan</span></div>
+</header>
+<section class="stats" aria-label="Kemajuan murid">
+ <div class="stat"><small>⭐ Bintang</small><strong id="stars">0</strong></div>
+ <div class="stat"><small>✅ Betul</small><strong id="correct">0</strong></div>
+ <div class="stat"><small>🎯 Berturut-turut</small><strong id="streak">0</strong></div>
+</section>
+<div class="layout">
+ <main class="panel">
+  <h2>🎮 Ruang latihan</h2><p class="sub">Pilih tahap, baca panduan dan masukkan jawapan kamu.</p>
+  <div class="mode-row" role="group" aria-label="Pilih tahap latihan">
+   <button class="mode active" data-level="1">Tahap 1 · Asas</button>
+   <button class="mode" data-level="2">Tahap 2 · Mantap</button>
+   <button class="mode" data-level="3">Tahap 3 · Cabaran</button>
+  </div>
+  <div class="question-box">
+   <div class="mission" id="mission">Misi 1 · Susun dan tambah</div>
+   <div class="equation" id="equation" aria-live="polite">2.3 + 1.4</div>
+   <div class="question-hint" id="questionHint">Bayangkan titik perpuluhan seperti tiang: kedua-duanya mesti sebaris.</div>
+   <div class="place-table" aria-label="Nilai tempat untuk nombor pertama">
+    <div class="place-head">Sa</div><div class="place-head">Persepuluh</div><div class="place-head">Perseratus</div>
+    <div class="digit ones" id="aOnes">2</div><div class="digit tenths" id="aTenths">3</div><div class="digit hundredths" id="aHundredths">0</div>
+    <div class="place-label">Nombor pertama</div><div class="place-label">Nombor pertama</div><div class="place-label">Nombor pertama</div>
+   </div>
+   <div class="place-table" aria-label="Nilai tempat untuk nombor kedua">
+    <div class="digit ones" id="bOnes">1</div><div class="digit tenths" id="bTenths">4</div><div class="digit hundredths" id="bHundredths">0</div>
+    <div class="place-label">Nombor kedua</div><div class="place-label">Nombor kedua</div><div class="place-label">Nombor kedua</div>
+   </div>
+  </div>
+  <div class="steps" id="steps">
+   <div class="step"><span class="step-num">1</span><p><b>Susun titik perpuluhan</b>Pastikan titik perpuluhan berada pada lajur yang sama.</p></div>
+   <div class="step"><span class="step-num">2</span><p><b>Mula dari kanan</b>Tambah perseratus dahulu, kemudian persepuluh dan sa.</p></div>
+   <div class="step"><span class="step-num">3</span><p><b>Semak jawapan</b>Pastikan titik perpuluhan dalam jawapan juga berada di tempat yang betul.</p></div>
+  </div>
+  <div class="answer-area">
+   <label for="answer">Jawapan kamu</label>
+   <div class="answer-row"><input id="answer" inputmode="decimal" autocomplete="off" placeholder="Contoh: 3.7 atau 3,70" aria-describedby="feedback"><button id="checkBtn" class="primary">Semak ✓</button></div>
+   <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
+   <div class="next-row"><button id="hintBtn" class="secondary">💡 Beri petunjuk</button><button id="nextBtn" class="primary">Soalan seterusnya →</button></div>
+   <p class="mini-note">Tip: Kamu boleh gunakan titik (3.75) atau koma (3,75) untuk perpuluhan.</p>
+  </div>
+ </main>
+ <aside class="right-stack">
+  <section class="panel">
+   <h2>🧠 Ingat 3 perkara</h2>
+   <ul class="checklist">
+    <li><span class="check">1</span><span><b>Titik mesti sebaris.</b><br>Jangan susun nombor ikut hujung digit sahaja.</span></li>
+    <li><span class="check">2</span><span><b>Tambah dari kanan.</b><br>Perseratus → persepuluh → sa.</span></li>
+    <li><span class="check">3</span><span><b>Tambah sifar jika perlu.</b><br>2.5 boleh ditulis sebagai 2.50.</span></li>
+   </ul>
+  </section>
+  <section class="panel">
+   <h2>📈 Kemajuan misi</h2>
+   <p class="sub" id="progressText">Selesaikan 5 soalan untuk melihat kemajuan.</p>
+   <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+   <p class="mini-note" id="levelText">Tahap 1: nombor dengan satu tempat perpuluhan.</p>
+   <button id="resetBtn" class="secondary" style="margin-top:14px;width:100%">↻ Mula semula kemajuan</button>
+  </section>
+  <section class="panel">
+   <h2>👩‍🏫 Nota guru</h2>
+   <p class="sub" style="margin-bottom:8px">Gunakan aplikasi ini untuk latihan pengukuhan atau pemulihan secara individu, berpasangan atau stesen pembelajaran.</p>
+   <div class="tip"><strong>Cadangan PdP</strong>Minta murid menyebut nilai setiap digit sebelum menjawab. Jika salah, gunakan petunjuk untuk mengingatkan langkah seterusnya.</div>
+   <p class="mini-note">Prototaip ini berjalan dalam pelayar dan tidak menghantar nama atau markah murid ke mana-mana pelayan.</p>
+  </section>
+ </aside>
+</div>
+<div class="footer">Misi Tambah Perpuluhan · Prototaip pembelajaran · Boleh digunakan pada telefon, tablet dan komputer</div>
+</div>
+<script>
+(()=>{
+ const $=id=>document.getElementById(id);
+ const state={level:1,a:2.3,b:1.4,answer:3.7,stars:0,correct:0,streak:0,attempts:0,solved:0,hints:0,questionNo:1,locked:false};
+ const levelNames={1:"Tahap 1: nombor dengan satu tempat perpuluhan.",2:"Tahap 2: nombor hingga perseratus.",3:"Tahap 3: nombor hingga perseratus dan pengumpulan semula."};
+ const fmt=n=>Number(n.toFixed(2)).toString().replace(".",",");
+ const parse=v=>Number(String(v).trim().replace(",","."));
+ function digits(n){const s=Number(n).toFixed(2).split(".");return {ones:s[0].slice(-1),tenths:s[1][0],hundredths:s[1][1]};}
+ function setDigit(id,val){$(id).textContent=val;}
+ function render(){
+  $("stars").textContent=state.stars;$("correct").textContent=state.correct;$("streak").textContent=state.streak;
+  $("equation").innerHTML=fmt(state.a).replace(",",'<span class="dot">,</span>')+' + '+fmt(state.b).replace(",",'<span class="dot">,</span>');
+  const a=digits(state.a),b=digits(state.b);
+  setDigit("aOnes",a.ones);setDigit("aTenths",a.tenths);setDigit("aHundredths",a.hundredths);
+  setDigit("bOnes",b.ones);setDigit("bTenths",b.tenths);setDigit("bHundredths",b.hundredths);
+  $("mission").textContent=`Misi ${state.questionNo} · ${state.level===1?"Bina keyakinan":state.level===2?"Kukuhkan kemahiran":"Cabaran pengumpulan semula"}`;
+  $("levelText").textContent=levelNames[state.level];
+  $("progressText").textContent=`${state.solved} daripada 5 soalan diselesaikan dalam sesi ini.`;
+  $("progressFill").style.width=Math.min(100,state.solved/5*100)+"%";
+  $("answer").value="";state.locked=false;
+  $("feedback").className="feedback";$("feedback").textContent="";
+  $("steps").innerHTML=`
+   <div class="step"><span class="step-num">1</span><p><b>Susun titik perpuluhan</b>${fmt(state.a)} dan ${fmt(state.b)} mempunyai titik perpuluhan. Pastikan kedua-duanya sebaris.</p></div>
+   <div class="step"><span class="step-num">2</span><p><b>Mula dari kanan</b>Tambah digit perseratus dahulu, kemudian persepuluh dan sa. Jika jumlah satu lajur 10 atau lebih, kumpulkan semula.</p></div>
+   <div class="step"><span class="step-num">3</span><p><b>Semak jawapan</b>Letakkan titik perpuluhan di bawah titik yang lain dan semak nilai tempat.</p></div>`;
+ }
+ function randomQuestion(){
+  let a,b;
+  if(state.level===1){
+   a=(Math.floor(Math.random()*45)+10)/10;b=(Math.floor(Math.random()*35)+10)/10;
+   a=Math.round(a*10)/10;b=Math.round(b*10)/10;
+  }else if(state.level===2){
+   a=(Math.floor(Math.random()*350)+105)/100;b=(Math.floor(Math.random()*240)+105)/100;
+   a=Math.round(a*100)/100;b=Math.round(b*100)/100;
+  }else{
+   const pool=[1.78,2.65,3.87,4.56,5.79,6.48,2.96,3.75,4.68,5.87,7.69];
+   a=pool[Math.floor(Math.random()*pool.length)];b=(Math.floor(Math.random()*899)+101)/100;
+   b=Math.round(b*100)/100;
+   if(Math.random()>.5){const t=a;a=b;b=t;}
+  }
+  state.a=Number(a.toFixed(2));state.b=Number(b.toFixed(2));state.answer=Number((state.a+state.b).toFixed(2));state.questionNo++;render();
+ }
+ function feedback(msg,type){const el=$("feedback");el.textContent=msg;el.className="feedback show "+type;}
+ function check(){
+  if(state.locked)return;
+  const raw=$("answer").value;
+  if(!raw.trim()){feedback("Masukkan jawapan dahulu. Kamu boleh gunakan titik atau koma perpuluhan.","neutral");$("answer").focus();return;}
+  const val=parse(raw);
+  if(!Number.isFinite(val)){feedback("Nombor itu belum dapat dibaca. Cuba taip contohnya 3,75.","try");return;}
+  state.attempts++;
+  if(Math.abs(val-state.answer)<0.0001){
+   state.locked=true;state.correct++;state.solved++;state.streak++;
+   const earned=state.hints?1:2;state.stars+=earned;
+   feedback(`Hebat! Jawapan betul ialah ${fmt(state.answer)}. Kamu mendapat ${earned} bintang. ${state.hints?"Teruskan berlatih tanpa petunjuk untuk dapat 2 bintang.":"Kamu berjaya menjawab tanpa petunjuk!"}`,"good");
+   $("steps").innerHTML=`
+    <div class="step"><span class="step-num">✓</span><p><b>Langkah 1 · Titik sebaris</b>Kedua-dua nombor disusun mengikut nilai tempat yang sama.</p></div>
+    <div class="step"><span class="step-num">✓</span><p><b>Langkah 2 · Tambah</b>${fmt(state.a)} + ${fmt(state.b)} = ${fmt(state.answer)}. Tambah dari kanan dan kumpulkan semula jika perlu.</p></div>
+    <div class="step"><span class="step-num">✓</span><p><b>Langkah 3 · Semak</b>Jawapan kamu betul. Perhatikan kedudukan koma perpuluhan.</p></div>`;
+   $("stars").textContent=state.stars;$("correct").textContent=state.correct;$("streak").textContent=state.streak;
+   $("progressText").textContent=`${state.solved} daripada 5 soalan diselesaikan dalam sesi ini.`;$("progressFill").style.width=Math.min(100,state.solved/5*100)+"%";
+   if(state.solved>=5){feedback(`Syabas! Kamu sudah menyelesaikan ${state.solved} soalan. Cuba tahap seterusnya jika sudah bersedia. Bintang: ${state.stars}.`,"good");}
+  }else{
+   state.streak=0;$("streak").textContent=0;
+   const rounded=Number(val.toFixed(2));
+   if(Math.abs(rounded-state.answer)<0.1)feedback("Hampir betul! Semak semula kedudukan titik perpuluhan dan nilai digit. Cuba sekali lagi.","try");
+   else feedback("Belum tepat, tak mengapa. Susun titik perpuluhan sebaris dan tambah bermula dari kanan. Tekan “Beri petunjuk” jika perlu.","try");
+  }
+ }
+ function hint(){
+  state.hints++;
+  const a=Math.round(state.a*100),b=Math.round(state.b*100),sum=a+b;
+  const carries=(Math.floor((Math.round((state.a%1)*100)+Math.round((state.b%1)*100))/100));
+  feedback(`Petunjuk: susun ${fmt(state.a)} dan ${fmt(state.b)} supaya koma perpuluhan sebaris. Mula dengan digit paling kanan: ${Math.round((state.a%1)*100)%10} + ${Math.round((state.b%1)*100)%10}. ${carries?"Jika jumlah perseratus mencapai 10 atau lebih, kumpulkan semula ke lajur persepuluh.":"Selepas perseratus, tambah digit persepuluh dan kemudian sa."} Cuba kira semula sebelum menyemak.`,"neutral");
+ }
+ document.querySelectorAll(".mode").forEach(btn=>btn.addEventListener("click",()=>{
+  document.querySelectorAll(".mode").forEach(x=>x.classList.remove("active"));btn.classList.add("active");state.level=Number(btn.dataset.level);state.solved=0;state.hints=0;randomQuestion();
+ }));
+ $("checkBtn").addEventListener("click",check);
+ $("answer").addEventListener("keydown",e=>{if(e.key==="Enter")check();});
+ $("hintBtn").addEventListener("click",hint);
+ $("nextBtn").addEventListener("click",()=>{state.hints=0;randomQuestion();});
+ $("resetBtn").addEventListener("click",()=>{state.stars=0;state.correct=0;state.streak=0;state.solved=0;state.hints=0;state.questionNo=0;randomQuestion();});
+ render();
+})();
+</script>
+</body>
+</html>
